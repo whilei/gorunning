@@ -3,6 +3,7 @@
 // - FIXME: probably does not support Windows or other edge-case OS's
 // - depends on existence of possible some but not all standard programs like lsof, ps, and awk
 // - FIXME: depends on bash shell
+// - TODO: could return more than just the file path, like time since started, owner, group...
 
 package go_running
 
