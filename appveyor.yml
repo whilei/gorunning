@@ -1,0 +1,18 @@
+platform: x64
+clone_folder: c:\gopath\src\github.com\whilei\gorunning
+os: Visual Studio 2015
+environment:
+  GOPATH: c:\gopath
+
+install:
+  - set PATH=%GOPATH%\bin;c:\go\bin;C:\msys64\mingw64\bin;C:\msys64\usr\bin\;%PATH%
+
+  - echo %PATH%
+  - echo %GOPATH%
+  - go version
+  - go env
+  - go get golang.org/x/sys/windows
+
+build_script:
+  - go test ./...
+
