@@ -1,4 +1,4 @@
-package go_running
+package gorunning
 
 import (
 	"testing"

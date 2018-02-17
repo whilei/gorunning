@@ -5,7 +5,7 @@
 // - FIXME: depends on bash shell
 // - TODO: could return more than just the file path, like time since started, owner, group...
 
-package go_running
+package gorunning
 
 import (
 	"os/exec"
