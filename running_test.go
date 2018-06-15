@@ -1,15 +1,15 @@
 package gorunning
 
 import (
-	"testing"
 	"os"
+	"testing"
 )
 
 func TestGetPath(t *testing.T) {
-	cases := []struct{
-		pid int
+	cases := []struct {
+		pid    int
 		follow bool
-		ok bool
+		ok     bool
 	}{
 		{os.Getpid(), true, true},
 		{os.Getpid(), false, true},
@@ -17,7 +17,7 @@ func TestGetPath(t *testing.T) {
 	}
 	for _, c := range cases {
 		p, err := GetPath(c.pid, c.follow)
-		if (err != nil && c.ok) || (c.ok && p == "" ) {
+		if (err != nil && c.ok) || (c.ok && p == "") {
 			t.Errorf("error: %s, %v / %d %v %v", p, err, c.pid, c.follow, c.ok)
 		} else if c.ok {
 			t.Log(p)
@@ -26,6 +26,7 @@ func TestGetPath(t *testing.T) {
 }
 
 var passedOnce bool
+
 func testgetRunningFilepath(t *testing.T, follow bool, grabbers []string) {
 	pid := os.Getpid()
 	p, err := getRunningFilepath(pid, follow, grabbers)
@@ -52,17 +53,17 @@ func TestGetRunningFilepath(t *testing.T) {
 }
 
 func TestParseArbitraryArgToBool(t *testing.T) {
-	cases := []struct{
-		ok bool
+	cases := []struct {
+		ok       bool
 		expected bool
-		args []interface{}
+		args     []interface{}
 	}{
 		{true, followSymlinksDefault, nil},
 		{true, true, []interface{}{true}},
 		{true, false, []interface{}{false}},
 		{false, false, []interface{}{true, true}},
-		{false,false, []interface{}{123}},
-		{false, false,[]interface{}{"nogo"}},
+		{false, false, []interface{}{123}},
+		{false, false, []interface{}{"nogo"}},
 	}
 	for _, c := range cases {
 		b, err := parseArbitraryArgToBool(followSymlinksDefault, c.args...)
