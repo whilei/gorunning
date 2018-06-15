@@ -8,11 +8,11 @@
 package gorunning
 
 import (
-	"os/exec"
-	"regexp"
-	"path/filepath"
 	"errors"
 	"fmt"
+	"os/exec"
+	"path/filepath"
+	"regexp"
 )
 
 const (
@@ -20,10 +20,10 @@ const (
 )
 
 var (
-	errInvalidArg = errors.New("invalid argument(s)")
+	errInvalidArg             = errors.New("invalid argument(s)")
 	errRunningPathUnavailable = errors.New("path of running file unavailable")
-	errBadPid = errors.New("bad pid")
-	errCantCast = errors.New("cant cast value")
+	errBadPid                 = errors.New("bad pid")
+	errCantCast               = errors.New("cant cast value")
 )
 
 var (
@@ -73,7 +73,7 @@ func getRunningFilepath(pid int, followSymlink bool, grabbers []string) (running
 	var cmdOutput []byte
 	err = errRunningPathUnavailable
 
-	OUTER:
+OUTER:
 	for _, cmd := range grabbers {
 		for p, arg := range shells {
 			cmdOutput, err = exec.Command(p, arg, fmt.Sprintf(cmd, pid)).CombinedOutput()
